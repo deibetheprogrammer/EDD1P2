@@ -13,7 +13,7 @@ class Object
 
         //METODOS
 
-        //Compara los objetos para ver si sin el mismo
+        //Compara los objetos para ver si son el mismo
         virtual bool equals(Object*) = 0;
 
         //Muestra una version textual del objeto
