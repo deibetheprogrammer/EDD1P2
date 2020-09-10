@@ -24,6 +24,10 @@ class TreeNode : public Object
     char getEtiqueta();
     void setEtiqueta(char etiqueta);
 
+    //METODOS
+    virtual int compare(Object*){}
+    virtual string toString(){}
+
     //DESTRUCTOR
     ~TreeNode();
 
