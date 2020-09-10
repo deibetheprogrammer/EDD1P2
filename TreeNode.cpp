@@ -48,3 +48,29 @@ void TreeNode::setEtiqueta(char etiqueta)
 {
     this->etiqueta = etiqueta;
 }
+
+int TreeNode::compare(Object* x) 
+{
+    TreeNode* otro = dynamic_cast<TreeNode*>(x);
+    if(otro)
+    {
+        if (otro->getEtiqueta() == this->etiqueta)
+        {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+string TreeNode::toString()
+{
+    string etiqueta = "";
+    return etiqueta.insert(0,etiqueta);
+}
+
+//DESTRUCTOR
+
+TreeNode::~TreeNode()
+{
+    
+}
