@@ -14,7 +14,7 @@ class Object
         //METODOS
 
         //Compara los objetos para ver si son el mismo
-        virtual bool equals(Object*) = 0;
+        virtual int compare(Object*) = 0;
 
         //Muestra una version textual del objeto
         virtual string toString() = 0;
