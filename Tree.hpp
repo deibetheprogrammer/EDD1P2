@@ -65,7 +65,7 @@ class Tree
         vector<vector<TreeNode*>> nodes;
 
         //Raiz del arbol
-        TreeNode* raiz;
+        TreeNode* root;
 
 
 };
