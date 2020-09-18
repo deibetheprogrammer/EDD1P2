@@ -13,7 +13,7 @@ class Tree
 
         //CONSTRUCTOR
         Tree();
-
+        
         //METODOS
 
         //Devuelve el padre del nodo
@@ -26,7 +26,7 @@ class Tree
         TreeNode* hermano_der(TreeNode* tNode);
 
         //Crea un  nuevo nodo
-        TreeNode* crea(char etiqueta, TreeNode* padre, TreeNode* izq, TreeNode* der);
+        TreeNode* crea(char etiqueta, TreeNode* padre ,TreeNode* izq = NULL, TreeNode* der = NULL);
 
         //Devuelve la etiqueta de la raiz
         TreeNode* raiz();
