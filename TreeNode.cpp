@@ -1,6 +1,6 @@
 #include "TreeNode.hpp"
 
-TreeNode::TreeNode(TreeNode* padre, TreeNode* hijo_izq, TreeNode* hijo_der, char etiqueta)
+TreeNode::TreeNode(TreeNode* padre, TreeNode* hijo_izq, TreeNode* hijo_der, string etiqueta)
 {
     this->padre = padre;
     this->hijo_der = hijo_der;
@@ -39,12 +39,12 @@ void TreeNode::setIzq(TreeNode* hijo_izq)
     this->hijo_izq = hijo_izq;
 }
 
-char TreeNode::getEtiqueta()
+string TreeNode::getEtiqueta()
 {
     return this->etiqueta;
 }
 
-void TreeNode::setEtiqueta(char etiqueta)
+void TreeNode::setEtiqueta(string etiqueta)
 {
     this->etiqueta = etiqueta;
 }
@@ -64,8 +64,7 @@ int TreeNode::compare(Object* x)
 
 string TreeNode::toString()
 {
-    string etiqueta = "";
-    return etiqueta.insert(0,etiqueta);
+    return etiqueta;
 }
 
 //DESTRUCTOR

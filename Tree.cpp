@@ -12,7 +12,7 @@ Tree::Tree(int nNodos)
     
 }
 
-TreeNode* Tree::crea(char etiqueta,int nodo, int izq, int der) {
+TreeNode* Tree::crea(string etiqueta,int nodo, int izq, int der) {
     nodes[nodo]->setIzq(nodes[izq]);
     nodes[nodo]->setDer(nodes[der]);
 
@@ -20,4 +20,8 @@ TreeNode* Tree::crea(char etiqueta,int nodo, int izq, int der) {
     nodes[der]->setPadre(nodes[nodo]);
 
     nodes[nodo]->setEtiqueta(etiqueta);
+}
+
+TreeNode* Tree::padre(TreeNode* tNode) {
+    return tNode->getPadre();
 }
