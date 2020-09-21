@@ -1,6 +1,6 @@
 #include "TreeNode.hpp"
 
-TreeNode::TreeNode(int padre, int hijo_izq, int hijo_der, char etiqueta)
+TreeNode::TreeNode(TreeNode* padre, TreeNode* hijo_izq, TreeNode* hijo_der, char etiqueta)
 {
     this->padre = padre;
     this->hijo_der = hijo_der;
@@ -9,32 +9,32 @@ TreeNode::TreeNode(int padre, int hijo_izq, int hijo_der, char etiqueta)
 
 }
 
-int TreeNode::getPadre()
+TreeNode* TreeNode::getPadre()
 {
     return this->padre;
 }
 
-void TreeNode::setPadre(int padre)
+void TreeNode::setPadre(TreeNode* padre)
 {
     this->padre = padre;
 }
 
-int TreeNode::getDer()
+TreeNode* TreeNode::getDer()
 {
     return this->hijo_der;
 }
 
-void TreeNode::setDer(int hijo_der)
+void TreeNode::setDer(TreeNode* hijo_der)
 {
     this->hijo_der = hijo_der;
 }
 
-int TreeNode::getIzq()
+TreeNode* TreeNode::getIzq()
 {
     return this->hijo_izq;
 }
 
-void TreeNode::setIzq(int hijo_izq)
+void TreeNode::setIzq(TreeNode* hijo_izq)
 {
     this->hijo_izq = hijo_izq;
 }

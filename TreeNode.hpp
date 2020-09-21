@@ -9,17 +9,17 @@ class TreeNode : public Object
     public:
 
     //CONSTRUCTOR
-    TreeNode(int padre, int hijo_izq, int hijo_der, char etiqueta);
+    TreeNode(TreeNode* padre, TreeNode* hijo_izq, TreeNode* hijo_der, char etiqueta);
 
     //MUTADORES
-    int getPadre();
-    void setPadre(int padre);
+    TreeNode* getPadre();
+    void setPadre(TreeNode* padre);
 
-    int getIzq();
-    void setIzq(int hijo_izq);
+    TreeNode* getIzq();
+    void setIzq(TreeNode* hijo_izq);
 
-    int getDer();
-    void setDer(int hijo_der);
+    TreeNode* getDer();
+    void setDer(TreeNode* hijo_der);
 
     char getEtiqueta();
     void setEtiqueta(char etiqueta);
@@ -33,9 +33,9 @@ class TreeNode : public Object
 
     protected:
 
-    int padre = -1;
-    int hijo_izq = -1;
-    int hijo_der = -1;
+    TreeNode *padre;
+    TreeNode *hijo_izq;
+    TreeNode *hijo_der;
     char etiqueta;
 
 };
