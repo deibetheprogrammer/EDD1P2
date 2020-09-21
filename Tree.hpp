@@ -20,10 +20,10 @@ class Tree
         TreeNode* padre(TreeNode* tNode);
 
         //Delvuelve el hijo mas a la izquierda del nodo
-        TreeNode* hijo_mas_izq(TreeNode* tNode);
+        TreeNode* hijo_izq(TreeNode* tNode);
 
         //Devuelve el hijo mas a la derecha del nodo
-        TreeNode* hermano_der(TreeNode* tNode);
+        TreeNode* hijo_der(TreeNode* tNode);
 
         //Crea un  nuevo nodo
         TreeNode* crea(string etiqueta, int nodo = -1 ,int izq = -1, int der = -1);
