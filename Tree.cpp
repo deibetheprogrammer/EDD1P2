@@ -2,33 +2,50 @@
 #include <iostream>
 using namespace std;
 
-Tree::Tree()
+Tree::Tree(int nNodos)
 {
-    this->root = nullptr;
+    this->root = 0;
+    for (int i = 0; i < nNodos; i++)
+    {
+        nodes.push_back(new TreeNode(nullptr,nullptr,nullptr,NULL));
+    }
+    
 }
 
-TreeNode* Tree::crea(char etiqueta,TreeNode* padre, TreeNode* izq, TreeNode* der) {
-    bool EnDer = false;
-    TreeNode* node = new TreeNode(etiqueta, izq, der);
-    if (padre->getIzq() != nullptr) {
-        padre->setIzq(node);
-    } else if (padre->getDer() != nullptr) {
-        padre->setDer(node);
-        EnDer = true;
-    } else {
-        delete node;
-        cout << "El padre esta ocupado\n";
-        return nullptr;
+TreeNode* Tree::crea(string etiqueta,int nodo, int izq, int der) {
+    nodes[nodo]->setIzq(nodes[izq]);
+    nodes[nodo]->setDer(nodes[der]);
+
+    nodes[izq]->setPadre(nodes[nodo]);
+    nodes[der]->setPadre(nodes[nodo]);
+
+    nodes[nodo]->setEtiqueta(etiqueta);
+}
+
+TreeNode* Tree::padre(TreeNode* tNode) {
+    return tNode->getPadre();
+}
+
+TreeNode* Tree::hijo_izq(TreeNode* tNode)
+{
+    return tNode->getIzq();
+}
+
+TreeNode* Tree::hijo_der(TreeNode* tNode)
+{
+    return tNode->getDer();
+}
+
+TreeNode* Tree::raiz()
+{
+    return nodes[0];
+}
+
+void Tree::anula() 
+{
+    for(TreeNode* tNode : nodes)
+    {
+        delete tNode;
     }
-    for (vector<TreeNode*> &vect : nodes) {
-        if (vect.at(0) == padre) {
-            vect.at(EnDer + 1) = node;
-        }
-    }
-    vector<TreeNode*> vect;
-    vect.push_back(node);
-    vect.push_back(nullptr);
-    vect.push_back(nullptr);
-    nodes.push_back(vect);
-    return node;
+    nodes.clear();
 }
