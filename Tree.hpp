@@ -12,21 +12,21 @@ class Tree
     public:
 
         //CONSTRUCTOR
-        Tree();
-
+        Tree(int nNodos);
+        
         //METODOS
 
         //Devuelve el padre del nodo
         TreeNode* padre(TreeNode* tNode);
 
         //Delvuelve el hijo mas a la izquierda del nodo
-        TreeNode* hijo_mas_izq(TreeNode* tNode);
+        TreeNode* hijo_izq(TreeNode* tNode);
 
         //Devuelve el hijo mas a la derecha del nodo
-        TreeNode* hermano_der(TreeNode* tNode);
+        TreeNode* hijo_der(TreeNode* tNode);
 
         //Crea un  nuevo nodo
-        TreeNode* crea(char etiqueta, TreeNode* padre, TreeNode* izq, TreeNode* der);
+        TreeNode* crea(string etiqueta, int nodo = -1 ,int izq = -1, int der = -1);
 
         //Devuelve la etiqueta de la raiz
         TreeNode* raiz();
@@ -62,10 +62,10 @@ class Tree
     protected:
 
         //Lista de listas de nodos
-        vector<vector<TreeNode*>> nodes;
+        vector<TreeNode*> nodes;
 
         //Raiz del arbol
-        TreeNode* root;
+        int root;
 
 
 };
