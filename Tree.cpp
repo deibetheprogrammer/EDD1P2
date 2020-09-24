@@ -1,5 +1,6 @@
 #include "Tree.hpp"
 #include <iostream>
+#include <queue>
 using namespace std;
 
 Tree::Tree(int nNodos)
@@ -39,6 +40,26 @@ TreeNode* Tree::hijo_der(TreeNode* tNode)
 TreeNode* Tree::raiz()
 {
     return nodes[0];
+}
+
+void Tree::BFS_Imprimir() {
+    if (raiz() == nullptr)
+        return;
+    queue<TreeNode*> q;
+    q.push(raiz());
+    while (!q.empty()) {
+        cout << q.front()->getEtiqueta() << " ";
+        TreeNode* temp = q.front()->getIzq();
+        if (temp) {
+            q.push(temp);
+        }
+        TreeNode* temp = q.front()->getDer();
+        if (temp) {
+            q.push(temp);
+        }
+        temp = nullptr;
+        q.pop();
+    }
 }
 
 void Tree::anula() 
