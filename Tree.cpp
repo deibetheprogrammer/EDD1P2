@@ -49,3 +49,13 @@ void Tree::anula()
     }
     nodes.clear();
 }
+
+void Tree::DFS_ImprimirPreOrder(TreeNode* tNode)
+{
+    cout << tNode->toString() << ",";
+    if(tNode->getIzq() != nullptr)
+        DFS_ImprimirPreOrder(tNode->getIzq());
+    if (tNode->getDer() != nullptr)
+        DFS_ImprimirPreOrder(tNode->getDer());
+
+}
