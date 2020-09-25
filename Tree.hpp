@@ -28,7 +28,7 @@ class Tree
         //Crea un  nuevo nodo
         TreeNode* crea(string etiqueta, int nodo = -1 ,int izq = -1, int der = -1);
 
-        //Devuelve la etiqueta de la raiz
+        //Devuelve el nodo raiz
         TreeNode* raiz();
 
         //Borra todos los elementos del arbol

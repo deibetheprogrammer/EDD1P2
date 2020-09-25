@@ -7,19 +7,27 @@ Tree::Tree(int nNodos)
     this->root = 0;
     for (int i = 0; i < nNodos; i++)
     {
-        nodes.push_back(new TreeNode(nullptr,nullptr,nullptr,NULL));
+        nodes.push_back(new TreeNode(nullptr,nullptr,nullptr,""));
     }
     
 }
 
 TreeNode* Tree::crea(string etiqueta,int nodo, int izq, int der) {
-    nodes[nodo]->setIzq(nodes[izq]);
-    nodes[nodo]->setDer(nodes[der]);
-
-    nodes[izq]->setPadre(nodes[nodo]);
-    nodes[der]->setPadre(nodes[nodo]);
+    if(izq != -1)
+    {
+        nodes[nodo]->setIzq(nodes[izq]);
+        nodes[izq]->setPadre(nodes[nodo]);
+    }
+        
+    if (der != -1)
+    {
+        nodes[nodo]->setDer(nodes[der]);
+        nodes[der]->setPadre(nodes[nodo]);
+    }
 
     nodes[nodo]->setEtiqueta(etiqueta);
+
+    return nodes[nodo];
 }
 
 TreeNode* Tree::padre(TreeNode* tNode) {
@@ -57,5 +65,8 @@ void Tree::DFS_ImprimirPreOrder(TreeNode* tNode)
         DFS_ImprimirPreOrder(tNode->getIzq());
     if (tNode->getDer() != nullptr)
         DFS_ImprimirPreOrder(tNode->getDer());
+
+    if(tNode == nodes[0])
+        cout << endl;
 
 }
