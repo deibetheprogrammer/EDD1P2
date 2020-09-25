@@ -47,7 +47,7 @@ class Tree
         void DFS_ImprimirInOrder();
 
         //Mostrará en pantalla el resultado de realizar el recorrido en orden posterior
-        void DFS_ImprimirPostOrder();
+        void DFS_ImprimirPostOrder(TreeNode*);
 
         //Pedirá el nombre de un archivo de texto, para cuyo contenido se creará un código de Huffman y se mostrará en pantalla  
         void codificadorHuffman(string nombre);
