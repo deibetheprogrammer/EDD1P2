@@ -53,7 +53,7 @@ void Tree::BFS_Imprimir() {
         if (temp) {
             q.push(temp);
         }
-        TreeNode* temp = q.front()->getDer();
+        temp = q.front()->getDer();
         if (temp) {
             q.push(temp);
         }
