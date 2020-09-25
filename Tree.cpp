@@ -49,3 +49,14 @@ void Tree::anula()
     }
     nodes.clear();
 }
+
+void Tree::DFS_ImprimirPostOrder(TreeNode* raiz) {
+    if (raiz != NULL) {
+        DFS_ImprimirPostOrder(raiz->getIzq());
+        DFS_ImprimirPostOrder(raiz->getDer());
+        cout << raiz->toString() << "\n";
+    }
+    else {
+        cout << "No existe el arbol" << endl;
+    }
+}
