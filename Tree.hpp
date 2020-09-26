@@ -50,12 +50,6 @@ class Tree
         //Mostrará en pantalla el resultado de realizar el recorrido en orden posterior
         void DFS_ImprimirPostOrder();
 
-        //Pedirá el nombre de un archivo de texto, para cuyo contenido se creará un código de Huffman y se mostrará en pantalla  
-        void codificadorHuffman(string nombre);
-
-        //Pedirá el nombre de un archivo de texto codificado y el árbol, mostrará el texto original 
-        void decodificadorHuffman(string mensaje,string arbol);
-
         //Devuelve el codigo de un nodo
         string ruta(string etiqueta);
 
