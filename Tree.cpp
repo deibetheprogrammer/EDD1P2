@@ -77,6 +77,7 @@ void Tree::DFS_ImprimirPostOrder(TreeNode* raiz) {
     else {
         cout << "No existe el arbol" << endl;
     }
+}
 
 void Tree::DFS_ImprimirPreOrder(TreeNode* tNode)
 {
