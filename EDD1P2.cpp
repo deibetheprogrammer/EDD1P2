@@ -10,6 +10,9 @@ using namespace std;
 //Codificador Huffman
 void codificadorHuffman(string nombre);
 
+//Decodificador Huffman
+void decodificadorHuffman(string mensaje,string arbol);
+
 int main() {
 
     codificadorHuffman("Duke.txt");
@@ -164,10 +167,93 @@ void codificadorHuffman(string nombre)
                         }
                         
                     }
-                } 
+                }
+                else
+                {
+                    ofst << ",;,";
+                }
+                
                 ofst << endl;
             }
             ofst.close();
         }
     }
+}
+
+//Decodificador Huffman
+void decodificadorHuffman(string mensaje,string arbol)
+{
+    //Obtener el arbol
+    ifstream ifst(arbol);
+    if (ifst.is_open())
+    { 
+        int sizeN;
+        ifst >> sizeN;
+
+        vector<TreeNode*> nodos(sizeN,nullptr);
+        for (int i = 0; i < sizeN; i++)
+        {
+            nodos[i] = new TreeNode(nullptr,nullptr,nullptr,"");
+        }
+
+        for (int i = 0; i < sizeN; i++)
+        {
+            string etiqueta;
+            getline(ifst,etiqueta,',');
+            string nodo_izq;
+            getline(ifst,nodo_izq,';');
+
+            if(nodo_izq != "")
+            {
+                TreeNode* izq = nodos[stoi(nodo_izq)];
+                izq->setEtiqueta(etiqueta);
+                izq->setPadre(nodos[i]);
+                nodos[i]->setIzq(izq);
+
+                string etiquetaD;
+                getline(ifst,etiquetaD,',');
+                string nodo_der;
+                getline(ifst,nodo_der);
+
+                if (nodo_der != "")
+                {
+                    TreeNode* der = nodos[stoi(nodo_der)];
+                    der->setEtiqueta(etiquetaD);
+                    der->setPadre(nodos[i]);
+                    nodos[i]->setDer(der);
+                }
+            }
+        }
+
+        Tree* tree = new Tree(nodos);
+
+        //Decodificar el mensaje
+
+        ifstream ifsc(mensaje);
+        if (ifsc.is_open())
+        {
+            char c;
+            TreeNode* actual = tree->raiz();
+            while (ifsc.get(c))
+            {
+                if(c == '0')
+                {
+                    actual = actual->getIzq();
+                }
+                else
+                {
+                    actual = actual->getDer();
+                }
+
+                if(actual->getEtiqueta() != "")
+                {
+                    cout << actual->getEtiqueta();
+                    actual = tree->raiz();
+                }
+                
+            }
+            
+        }
+    }
+    
 }
