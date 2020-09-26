@@ -48,7 +48,7 @@ class Tree
         void DFS_ImprimirInOrder();
 
         //Mostrará en pantalla el resultado de realizar el recorrido en orden posterior
-        void DFS_ImprimirPostOrder();
+        void DFS_ImprimirPostOrder(TreeNode*);
 
         //Devuelve el codigo de un nodo
         string ruta(string etiqueta);
