@@ -141,7 +141,17 @@ void codificadorHuffman(string nombre)
                 TreeNode* tNode = arbol[i];
                 if (tNode->getIzq() != nullptr)
                 {
-                    ofst << tNode->getIzq()->getEtiqueta() << ",";
+                    string etiqueta = tNode->getIzq()->getEtiqueta();
+                    if (etiqueta == "," )
+                    {
+                        etiqueta = "cm";
+                    }
+                    else if (etiqueta == ";")
+                    {
+                        etiqueta = "pc";
+                    }
+                
+                    ofst << etiqueta << ",";
 
                     for (int j = 0; j < arbol.size(); j++)
                     {
@@ -155,7 +165,16 @@ void codificadorHuffman(string nombre)
 
                     if (tNode->getDer() != nullptr)
                     {
-                        ofst << tNode->getDer()->getEtiqueta() << ",";
+                        string etiquetaD = tNode->getDer()->getEtiqueta();
+                        if (etiquetaD == "," )
+                        {
+                            etiquetaD = "cm";
+                        }
+                        else if (etiquetaD == ";")
+                        {
+                            etiquetaD = "pc";
+                        }
+                        ofst << etiquetaD << ",";
 
                         for (int k = 0; k < arbol.size(); k++)
                         {
@@ -202,6 +221,16 @@ void decodificadorHuffman(string mensaje,string arbol)
         {
             string etiqueta;
             getline(ifst,etiqueta,',');
+
+            if (etiqueta == "cm")
+            {
+                etiqueta = ",";
+            }
+            else if (etiqueta == "pc")
+            {
+                etiqueta = ";";
+            }
+
             string nodo_izq;
             getline(ifst,nodo_izq,';');
 
@@ -216,6 +245,16 @@ void decodificadorHuffman(string mensaje,string arbol)
 
             string etiquetaD;
             getline(ifst,etiquetaD,',');
+
+            if (etiquetaD == "cm")
+            {
+                etiquetaD = ",";
+            }
+            else if (etiquetaD == "pc")
+            {
+                etiquetaD = ";";
+            }
+
             string nodo_der;
             getline(ifst,nodo_der);
 
