@@ -22,7 +22,7 @@ TreeNode* Tree::crea(string etiqueta,int nodo, int izq, int der) {
     if (izq != -1)
         nodes.at(izq)->setPadre(nodes[nodo]);
     if (der != -1)    
-        nodes.at(der)->setPadre((der == - 1) ? nullptr : nodes[nodo]);
+        nodes.at(der)->setPadre(nodes[nodo]);
     nodes.at(nodo)->setEtiqueta(etiqueta);
     return nullptr;
 }
@@ -55,28 +55,42 @@ void Tree::anula()
     nodes.clear();
 }
 
+vector<string> split(string line, char delimiter = ',') {
+    vector<string> vect;
+    string temp = "";
+    for (int i = 0; i < line.length(); i++) {
+        if (line.at(i) == delimiter) {
+            vect.push_back(temp);
+            temp = "";
+        } else {
+            temp += line.at(i);
+        }
+    }
+    if(temp != "")
+        vect.push_back(temp);
+    return vect;
+}
+
 Tree Tree::leerDeArchivo(string nombre) {
     ifstream archivo;
     archivo.open(nombre + ".txt", ios::in);
-    vector<string> lineas;
+    vector<vector<string>> lineas;
     string linea;
     getline(archivo, linea);
     int nLin = stoi(linea);
     for(int i = 0; i < nLin; i++) {
         if (getline(archivo, linea)) {
-            lineas.push_back(linea);
+            lineas.push_back(split(linea));
         } else {
-            lineas.push_back("");
+            lineas.push_back(split(""));
         }        
     }
-    linea = lineas.at(0);
     Tree Arbol(nLin);
     for (int i = 0; i < lineas.size(); i++) {
-        linea = lineas.at(i);
-        if (linea.size() == 3) {
-            Arbol.crea(to_string(i), i, (linea.at(0) - 48), (linea.at(2) - 48));
-        } else if(linea.size() == 2) {
-            Arbol.crea(to_string(i), i, (linea.at(0) - 48));
+        if (lineas.at(i).size() == 2) {
+            Arbol.crea(to_string(i), i, stoi(lineas.at(i).at(0)), stoi(lineas.at(i).at(1)));
+        } else if(lineas.at(i).size() == 1) {
+            Arbol.crea(to_string(i), i, stoi(lineas.at(i).at(0)));
         } else {
             Arbol.crea(to_string(i), i);
         }
