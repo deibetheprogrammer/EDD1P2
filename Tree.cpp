@@ -1,5 +1,7 @@
 #include "Tree.hpp"
 #include <iostream>
+#include <string>
+#include <vector>
 #include <queue>
 #include <fstream>
 #include <sstream>
@@ -89,6 +91,49 @@ void Tree::anula()
     nodes.clear();
 }
 
+vector<string> split(string line, char delimiter = ',') {
+    vector<string> vect;
+    string temp = "";
+    for (int i = 0; i < line.length(); i++) {
+        if (line.at(i) == delimiter) {
+            vect.push_back(temp);
+            temp = "";
+        } else {
+            temp += line.at(i);
+        }
+    }
+    if(temp != "")
+        vect.push_back(temp);
+    return vect;
+}
+
+Tree Tree::leerDeArchivo(string nombre) {
+    ifstream archivo;
+    archivo.open(nombre + ".txt", ios::in);
+    vector<vector<string>> lineas;
+    string linea;
+    getline(archivo, linea);
+    int nLin = stoi(linea);
+    for(int i = 0; i < nLin; i++) {
+        if (getline(archivo, linea)) {
+            lineas.push_back(split(linea));
+        } else {
+            lineas.push_back(split(""));
+        }        
+    }
+    Tree Arbol(nLin);
+    for (int i = 0; i < lineas.size(); i++) {
+        if (lineas.at(i).size() == 2) {
+            Arbol.crea(to_string(i), i, stoi(lineas.at(i).at(0)), stoi(lineas.at(i).at(1)));
+        } else if(lineas.at(i).size() == 1) {
+            Arbol.crea(to_string(i), i, stoi(lineas.at(i).at(0)));
+        } else {
+            Arbol.crea(to_string(i), i);
+        }
+    }
+    archivo.close();
+    return Arbol;
+}
 
 void Tree::DFS_ImprimirPostOrder(TreeNode* raiz) {
     if (raiz != NULL) {
@@ -161,5 +206,8 @@ string Tree::ruta(string etiqueta)
     }
 
     return route;
+}
 
+Tree::~Tree() {
+    anula();
 }

@@ -36,7 +36,7 @@ class Tree
         void anula();
 
         //Se le debe indicar el nombre de un archivo de texto a partir del cual se leerá el árbol
-        Tree leerDeArchivo(string nombre);
+        static Tree leerDeArchivo(string nombre);
 
         //Mostrará en pantalla el resultado de realizar el recorrido en anchura
         void BFS_Imprimir();
