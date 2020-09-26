@@ -13,6 +13,7 @@ class Tree
 
         //CONSTRUCTOR
         Tree(int nNodos);
+        Tree(vector<TreeNode*> arbol);
         
         //METODOS
 
@@ -54,6 +55,9 @@ class Tree
 
         //Pedirá el nombre de un archivo de texto codificado y el árbol, mostrará el texto original 
         void decodificadorHuffman(string mensaje,string arbol);
+
+        //Devuelve el codigo de un nodo
+        string ruta(string etiqueta);
 
         //DESTRUCTOR
         ~Tree();
