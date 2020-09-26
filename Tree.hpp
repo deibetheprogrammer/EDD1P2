@@ -28,7 +28,7 @@ class Tree
         //Crea un  nuevo nodo
         TreeNode* crea(string etiqueta, int nodo = -1 ,int izq = -1, int der = -1);
 
-        //Devuelve la etiqueta de la raiz
+        //Devuelve el nodo raiz
         TreeNode* raiz();
 
         //Borra todos los elementos del arbol
@@ -41,7 +41,7 @@ class Tree
         void BFS_Imprimir();
 
         //Mostrará en pantalla el resultado de realizar el recorrido en orden previo
-        void DFS_ImprimirPreOrder();
+        void DFS_ImprimirPreOrder(TreeNode* tNode);
 
         //Mostrará en pantalla el resultado de realizar el recorrido en orden simétrico 
         void DFS_ImprimirInOrder();
