@@ -16,6 +16,7 @@ void decodificadorHuffman(string mensaje,string arbol);
 int main() {
 
     codificadorHuffman("Duke.txt");
+    decodificadorHuffman("Duke.txt.hfc","Duke.txt.hft");
     
 }
 
@@ -189,6 +190,7 @@ void decodificadorHuffman(string mensaje,string arbol)
     { 
         int sizeN;
         ifst >> sizeN;
+        ifst.ignore(100,'\n');
 
         vector<TreeNode*> nodos(sizeN,nullptr);
         for (int i = 0; i < sizeN; i++)
@@ -210,18 +212,19 @@ void decodificadorHuffman(string mensaje,string arbol)
                 izq->setPadre(nodos[i]);
                 nodos[i]->setIzq(izq);
 
-                string etiquetaD;
-                getline(ifst,etiquetaD,',');
-                string nodo_der;
-                getline(ifst,nodo_der);
+            }
 
-                if (nodo_der != "")
-                {
-                    TreeNode* der = nodos[stoi(nodo_der)];
-                    der->setEtiqueta(etiquetaD);
-                    der->setPadre(nodos[i]);
-                    nodos[i]->setDer(der);
-                }
+            string etiquetaD;
+            getline(ifst,etiquetaD,',');
+            string nodo_der;
+            getline(ifst,nodo_der);
+
+            if (nodo_der != "")
+            {
+                TreeNode* der = nodos[stoi(nodo_der)];
+                der->setEtiqueta(etiquetaD);
+                der->setPadre(nodos[i]);
+                nodos[i]->setDer(der);
             }
         }
 
@@ -234,6 +237,9 @@ void decodificadorHuffman(string mensaje,string arbol)
         {
             char c;
             TreeNode* actual = tree->raiz();
+
+            cout << endl << "Mensaje decodificado : ";
+
             while (ifsc.get(c))
             {
                 if(c == '0')
@@ -252,7 +258,8 @@ void decodificadorHuffman(string mensaje,string arbol)
                 }
                 
             }
-            
+
+            cout << endl;
         }
     }
     
