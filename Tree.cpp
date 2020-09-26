@@ -60,6 +60,7 @@ void Tree::BFS_Imprimir() {
         temp = nullptr;
         q.pop();
     }
+    cout << endl;
 }
 
 void Tree::anula() 
