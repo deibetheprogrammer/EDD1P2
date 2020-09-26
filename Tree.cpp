@@ -95,6 +95,7 @@ Tree Tree::leerDeArchivo(string nombre) {
             Arbol.crea(to_string(i), i);
         }
     }
+    archivo.close();
     return Arbol;
 }
 
