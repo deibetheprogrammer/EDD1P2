@@ -13,6 +13,7 @@ class Tree
 
         //CONSTRUCTOR
         Tree(int nNodos);
+        Tree(vector<TreeNode*> arbol);
         
         //METODOS
 
@@ -28,7 +29,7 @@ class Tree
         //Crea un  nuevo nodo
         TreeNode* crea(string etiqueta, int nodo = -1 ,int izq = -1, int der = -1);
 
-        //Devuelve la etiqueta de la raiz
+        //Devuelve el nodo raiz
         TreeNode* raiz();
 
         //Borra todos los elementos del arbol
@@ -41,19 +42,16 @@ class Tree
         void BFS_Imprimir();
 
         //Mostrará en pantalla el resultado de realizar el recorrido en orden previo
-        void DFS_ImprimirPreOrder();
+        void DFS_ImprimirPreOrder(TreeNode* tNode);
 
         //Mostrará en pantalla el resultado de realizar el recorrido en orden simétrico 
-        void DFS_ImprimirInOrder();
+        void DFS_ImprimirInOrder(TreeNode* A);
 
         //Mostrará en pantalla el resultado de realizar el recorrido en orden posterior
-        void DFS_ImprimirPostOrder();
+        void DFS_ImprimirPostOrder(TreeNode*);
 
-        //Pedirá el nombre de un archivo de texto, para cuyo contenido se creará un código de Huffman y se mostrará en pantalla  
-        void codificadorHuffman(string nombre);
-
-        //Pedirá el nombre de un archivo de texto codificado y el árbol, mostrará el texto original 
-        void decodificadorHuffman(string mensaje,string arbol);
+        //Devuelve el codigo de un nodo
+        string ruta(string etiqueta);
 
         //DESTRUCTOR
         ~Tree();
