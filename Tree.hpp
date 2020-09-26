@@ -13,6 +13,7 @@ class Tree
 
         //CONSTRUCTOR
         Tree(int nNodos);
+        Tree(vector<TreeNode*> arbol);
         
         //METODOS
 
@@ -48,6 +49,9 @@ class Tree
 
         //Mostrará en pantalla el resultado de realizar el recorrido en orden posterior
         void DFS_ImprimirPostOrder();
+
+        //Devuelve el codigo de un nodo
+        string ruta(string etiqueta);
 
         //DESTRUCTOR
         ~Tree();

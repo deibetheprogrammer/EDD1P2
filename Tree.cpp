@@ -1,5 +1,9 @@
 #include "Tree.hpp"
 #include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
+
 using namespace std;
 
 Tree::Tree(int nNodos)
@@ -10,6 +14,11 @@ Tree::Tree(int nNodos)
         nodes.push_back(new TreeNode(nullptr,nullptr,nullptr,""));
     }
     
+}
+
+Tree::Tree(vector<TreeNode*> arbol)
+{
+    this->nodes = arbol;
 }
 
 TreeNode* Tree::crea(string etiqueta,int nodo, int izq, int der) {
@@ -69,4 +78,40 @@ void Tree::DFS_ImprimirPreOrder(TreeNode* tNode)
     if(tNode == nodes[0])
         cout << endl;
 
+}
+
+string Tree::ruta(string etiqueta)
+{
+    TreeNode* target = nullptr;
+    for (TreeNode* tNode : nodes)
+    {
+        if (tNode->getEtiqueta() == etiqueta)
+        {
+            target = tNode;
+            break;
+        }
+
+    }
+    if(target == nullptr)
+        return "";
+
+    //Creamos la ruta
+    
+    string route;
+    while (target != raiz())
+    {
+        TreeNode* padre = target->getPadre();
+        if (padre->getIzq() == target)
+        {
+            route = "0" + route;
+        }
+        else
+        {
+            route = "1" + route;
+        }
+        target = padre;
+        
+    }
+
+    return route;
 }
