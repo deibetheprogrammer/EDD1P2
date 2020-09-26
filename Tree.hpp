@@ -45,7 +45,7 @@ class Tree
         void DFS_ImprimirPreOrder(TreeNode* tNode);
 
         //Mostrará en pantalla el resultado de realizar el recorrido en orden simétrico 
-        void DFS_ImprimirInOrder();
+        void DFS_ImprimirInOrder(TreeNode* A);
 
         //Mostrará en pantalla el resultado de realizar el recorrido en orden posterior
         void DFS_ImprimirPostOrder(TreeNode*);

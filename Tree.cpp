@@ -79,6 +79,19 @@ void Tree::DFS_ImprimirPostOrder(TreeNode* raiz) {
     }
 }
 
+void Tree::DFS_ImprimirInOrder(TreeNode* A){
+ 	if(A==nullptr){
+ 		return;
+	}else{
+	 	DFS_ImprimirInOrder(A->getIzq());
+	 	cout<<A->getEtiqueta()<<" - ";
+	 	DFS_ImprimirInOrder(A->getDer());
+	}
+
+    if(A == nodes[0])
+        cout << endl;
+}
+
 void Tree::DFS_ImprimirPreOrder(TreeNode* tNode)
 {
     cout << tNode->toString() << ",";
