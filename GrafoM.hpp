@@ -2,7 +2,6 @@
 #define GRAFOM_H
 
 #include <vector>
-#include "TreeNode.hpp"
 
 using std::vector;
 
@@ -23,10 +22,7 @@ public:
 protected:
 
     //Lista de listas de nodos
-    vector<TreeNode*> nodes;
-
-    //Raiz del arbol
-    int root;
+    vector<vector<int>> listas;
 
 
 };
