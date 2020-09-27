@@ -5,7 +5,7 @@
 
 using std::vector;
 
-class Tree
+class GrafoM
 {
 
 public:
