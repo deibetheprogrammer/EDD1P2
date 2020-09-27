@@ -9,10 +9,6 @@ AristaL::AristaL(int origen, int destino, int peso)
 }
 
 //METODOS
-bool AristaL::operator<(AristaL& rhs)
-{
-    return this->peso < rhs.peso;
-}
 
 int AristaL::getOrigen()
 {

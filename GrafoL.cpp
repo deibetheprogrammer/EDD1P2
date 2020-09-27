@@ -21,6 +21,9 @@ GrafoL::GrafoL(string nombre)
         ifs >> nVertices;
         ifs.ignore(100,'\n');
 
+        grafo.clear();
+        grafo.resize(nVertices);
+
         string linea;
 
         for (int i = 0; i < nVertices; i++)
@@ -81,7 +84,7 @@ void GrafoL::crearArista(int vOrigen, int vDestino, int peso)
 //Algoritmo de Kruskal
 GrafoL* GrafoL::kruskal()
 {
-    GrafoL* AACM;
+    GrafoL* AACM = new GrafoL(grafo.size());
     vector<AristaL> aristasOrd;
 
     for (int i = 0; i < grafo.size(); i++)
@@ -96,7 +99,9 @@ GrafoL* GrafoL::kruskal()
         }
         
     }
-    sort(aristasOrd.begin(),aristasOrd.end());
+    sort(aristasOrd.begin(),aristasOrd.end(),[](AristaL& lhs, AristaL& rhs){
+        return lhs.getPeso() < rhs.getPeso();
+    });
     vector<int> conjuntos;
 
     for (int i = 0; i < grafo.size(); i++)
@@ -143,6 +148,7 @@ GrafoL* GrafoL::kruskal()
 //Imprime el grafo
 void GrafoL::imprimir()
 {
+    cout << endl << "Grafo: " << endl;
     for (int i = 0; i < grafo.size(); i++)
     {
         for (int j = 0; j < grafo[i].size(); j++)

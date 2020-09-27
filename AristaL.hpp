@@ -13,7 +13,6 @@ class AristaL
     AristaL(int origen, int destino, int peso);
 
     //METODOS
-    bool operator<(AristaL& rhs);
 
     //Devuelve el origen
     int getOrigen();
