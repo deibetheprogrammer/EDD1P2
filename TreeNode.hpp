@@ -9,7 +9,7 @@ class TreeNode : public Object
     public:
 
     //CONSTRUCTOR
-    TreeNode(TreeNode* padre, TreeNode* hijo_izq, TreeNode* hijo_der, char etiqueta);
+    TreeNode(TreeNode* padre, TreeNode* hijo_izq, TreeNode* hijo_der, string etiqueta);
 
     //MUTADORES
     TreeNode* getPadre();
@@ -21,8 +21,12 @@ class TreeNode : public Object
     TreeNode* getDer();
     void setDer(TreeNode* hijo_der);
 
-    char getEtiqueta();
-    void setEtiqueta(char etiqueta);
+    string getEtiqueta();
+    void setEtiqueta(string etiqueta);
+
+    //METODOS
+    virtual int compare(Object*);
+    virtual string toString();
 
     //DESTRUCTOR
     ~TreeNode();
@@ -32,7 +36,7 @@ class TreeNode : public Object
     TreeNode *padre;
     TreeNode *hijo_izq;
     TreeNode *hijo_der;
-    char etiqueta;
+    string etiqueta;
 
 };
 
