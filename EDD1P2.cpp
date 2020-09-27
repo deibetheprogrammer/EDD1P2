@@ -125,7 +125,7 @@ void operarArbol(Tree* arbol, int op) {
     case 7://decodificador Huffman
     cout << "Ingrese el nombre del archivo: ";
         cin >> name;
-        decodificadorHuffman(name + "hfc", name + "hft");
+        decodificadorHuffman(name + ".hfc", name + ".hft");
     break;
     }
 }
