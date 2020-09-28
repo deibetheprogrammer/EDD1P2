@@ -20,14 +20,14 @@ int subMenuArboles();
 int subMenuGrafos();
 int miniMenuGrafos();
 void operarArbol(Tree*, int);
-void operarGrafo(bool, int, GrafoL* Lista = nullptr) /*,GrafoM* = nullptr)*/;
+void operarGrafo(bool, int, GrafoL* Lista = nullptr, GrafoM* = nullptr);
 string nombreArchivo();
 
 int main() {
 
     Tree* arbolito = nullptr;
     GrafoL* grafoListas = nullptr;
-    //GrafoM* grafoMatriz = nullptr;
+    GrafoM* grafoMatriz = nullptr;
     bool listas = false;
     int op, subOp;
     string name;
@@ -63,27 +63,32 @@ int main() {
                         }
                         grafoListas = new GrafoL(nombreArchivo());
 
-                        cout << endl << "Grafo leido: " << endl;
-
-                        grafoListas->imprimir();
-
                         if (grafoListas->numVertices() == 0)
                         {
                             cout << endl << "Error al leer grafo" << endl;
                             delete grafoListas;
                             grafoListas = nullptr;
                             listas = false;
+                        } else {
+                        cout << endl << "Grafo leido: " << endl;
+                        grafoListas->imprimir();
                         }
-                        
                     } else {//Grafo con Matriz
-                        /*if(grafoMatriz != nullptr) {
+                        if(grafoMatriz != nullptr) {
                             delete grafoMatriz;
                             grafoMatriz = nullptr;
                         }
-                        grafoMatriz = new GrafoM(nombreArchivo());*/
+                        grafoMatriz = new GrafoM(nombreArchivo());
+                        if(grafoMatriz->numVertices() == 0){
+                            cout << endl << "Error al leer grafo" << endl;
+                            delete grafoMatriz;
+                            grafoMatriz = nullptr;
+                        } else {
+                        cout << endl << "Grafo leido: " << endl;
+                        }
                     }
                 } else if(subOp != 5) {
-                    operarGrafo(listas, subOp, grafoListas /*,grafoMatriz,*/);
+                    operarGrafo(listas, subOp, grafoListas, grafoMatriz);
                 }
             } while(subOp != 5);
         break;
@@ -105,7 +110,7 @@ bool validar(int &entrada, int max, int min = 1) {//valida que el tipo de dato i
 
 int menu() {
     int op;
-    cout << "Menu Principal\n1. Algoritmos sobre Arboles\n2. Algoritmos sobre Grafos\n3. Salir: ";
+    cout << "\nMenu Principal\n1. Algoritmos sobre Arboles\n2. Algoritmos sobre Grafos\n3. Salir: ";
     if(!validar(op, 3)) {
         return menu();
     }
@@ -115,7 +120,7 @@ int menu() {
 int subMenuArboles() {
     int op;
     cout << endl;
-    cout << "Algoritmos sobre Árboles\n1. Leer Arbol de un archivo\n2. Imprimir recorrido preorder\n";
+    cout << "\nAlgoritmos sobre Árboles\n1. Leer Arbol de un archivo\n2. Imprimir recorrido preorder\n";
     cout << "3. Imprimir recorrido in order\n4. Imprimir recorrido postorder\n5. Imprimir recorrido en Anchura\n";
     cout << "6. Codificador de Huffman\n7. Decodificador de Huffman\n8. Regresar al Menu Principal\nIngrese la opcion que desea:  ";
     if(!validar(op, 8)) {
@@ -126,7 +131,7 @@ int subMenuArboles() {
 
 int subMenuGrafos() {
     int op;
-    cout << "Algoritmos sobre Grafos\n1. Leer grafo de un archivo\n2. Prim\n3. Kruskal\n4. Floyd\n";
+    cout << "\nAlgoritmos sobre Grafos\n1. Leer grafo de un archivo\n2. Prim\n3. Kruskal\n4. Floyd\n";
     cout << "5. Regresar al Menu Principal: ";
     if(!validar(op, 7)) {
         return subMenuGrafos();
@@ -136,7 +141,7 @@ int subMenuGrafos() {
 
 int miniMenuGrafos() {
     int op;
-    cout << "Como desea leer el grafo?\n1. A una Matriz\n2. A una Lista: ";
+    cout << "\nComo desea leer el grafo?\n1. A una Matriz\n2. A una Lista: ";
     if (!validar(op, 2)) {
         return miniMenuGrafos();
     }
@@ -183,7 +188,7 @@ void operarArbol(Tree* arbol, int op) {
     }
 }
 
-void operarGrafo(bool conLista, int subOp, GrafoL* Lista) /*,GrafoM* Matriz = nullptr)*/ {
+void operarGrafo(bool conLista, int subOp, GrafoL* Lista, GrafoM* Matriz) {
     if (conLista) {
         if (subOp != 3) {
             cout << "Usted no tiene un grafo cargado con matrices de adyacencia. No puede usar esta funcion!\n";
@@ -195,7 +200,18 @@ void operarGrafo(bool conLista, int subOp, GrafoL* Lista) /*,GrafoM* Matriz = nu
              cout << "Usted no tiene cargado un grafo con listas de adyacencia. No puede usar esta funcion!\n";
             return;
         }
-        //cosos de la matriz ?
+        if (Matriz == nullptr) {
+            cout << "Usted no tiene un grafo cargado con matrices de adyacencia. No puede usar esta funcion!\n";
+            return;
+        }
+        switch (subOp) {
+        case 2:
+            Matriz->prim();
+        break;
+        case 4:
+            Matriz->floyd();
+        break;
+        }
     }
 }
 
