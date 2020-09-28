@@ -100,9 +100,10 @@ int menu() {
 
 int subMenuArboles() {
     int op;
+    cout << endl;
     cout << "Algoritmos sobre Árboles\n1. Leer Arbol de un archivo\n2. Imprimir recorrido preorder\n";
     cout << "3. Imprimir recorrido in order\n4. Imprimir recorrido postorder\n5. Imprimir recorrido en Anchura\n";
-    cout << "6. Codificador de Huffman\n7. Decodificador de Huffman\n8. Regresar al Menu Principal: ";
+    cout << "6. Codificador de Huffman\n7. Decodificador de Huffman\n8. Regresar al Menu Principal\nIngrese la opcion que desea:  ";
     if(!validar(op, 8)) {
         return subMenuArboles();
     }
@@ -150,6 +151,7 @@ void operarArbol(Tree* arbol, int op) {
     break;
     case 4://postorder
             arbol->DFS_ImprimirPostOrder(arbol->raiz());
+            cout << endl;
     break;
     case 5://BFS
             arbol->BFS_Imprimir();
