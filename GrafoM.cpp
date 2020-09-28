@@ -139,11 +139,12 @@ GrafoM* GrafoM::prim()
     for (AristaL arista : cs)
     {
         cout << arista.getOrigen() 
-             << " ---> " << arista.getDestino() 
+             << " <---> " << arista.getDestino() 
              << " : " << arista.getPeso() 
              << endl;
         
         AACM->crearArista(arista.getOrigen(),arista.getDestino(),arista.getPeso());
+        AACM->crearArista(arista.getDestino(),arista.getOrigen(),arista.getPeso());
     }
 
     return AACM;

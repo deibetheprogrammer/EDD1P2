@@ -1,4 +1,5 @@
 #include "Tree.hpp"
+#include "GrafoM.hpp"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -15,8 +16,8 @@ void decodificadorHuffman(string mensaje,string arbol);
 
 int main() {
 
-    codificadorHuffman("Duke.txt");
-    decodificadorHuffman("Duke.txt.hfc","Duke.txt.hft");
+    GrafoM* grafo = new GrafoM("Prim.txt");
+    grafo->prim();
     
 }
 
