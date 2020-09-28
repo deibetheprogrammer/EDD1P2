@@ -17,11 +17,17 @@ void decodificadorHuffman(string mensaje,string arbol);
 int menu();
 int subMenuArboles();
 int subMenuGrafos();
+int miniMenuGrafos();
 void operarArbol(Tree*, int);
+void operarGrafo(bool, int, GrafoL* Lista = nullptr) /*,GrafoM* = nullptr)*/;
+string nombreArchivo();
 
 int main() {
 
     Tree* arbolito = nullptr;
+    GrafoL* grafoListas = nullptr;
+    //GrafoM* grafoMatriz = nullptr;
+    bool listas = false;
     int op, subOp;
     string name;
     do {
@@ -31,33 +37,46 @@ int main() {
             do {
                 subOp = subMenuArboles();
                 switch (subOp) {
-                case 1:
+                case 1://leer arbol
                     if (arbolito != nullptr) {
                         delete arbolito;
                         arbolito = nullptr;
                     }
-                    cout << "Ingrese el nombre del archivo: ";
-                    cin >> name;
-                    arbolito = Tree::leerDeArchivo(name);
+                    arbolito = Tree::leerDeArchivo(nombreArchivo());
                 break;
-                default:
+                default://todas las demas funciones del arbol
                     operarArbol(arbolito, subOp);
                 break;
                 }
             } while (subOp != 8);
         break;
         case 2://Grafos
-            subOp = subMenuGrafos();
+            do {
+                subOp = subMenuGrafos();
+                if (subOp == 1) {
+                    listas = miniMenuGrafos() - 1;
+                    if (listas) {//Grafo con Listas
+                        if (grafoListas != nullptr) {
+                            delete grafoListas;
+                            grafoListas = nullptr;
+                        }
+                        grafoListas = new GrafoL(nombreArchivo());
+                    } else {//Grafo con Matriz
+                        /*if(grafoMatriz != nullptr) {
+                            delete grafoMatriz;
+                            grafoMatriz = nullptr;
+                        }
+                        grafoMatriz = new GrafoM(nombreArchivo());*/
+                    }
+                } else if(subOp != 5) {
+                    operarGrafo(listas, subOp, grafoListas /*,grafoMatriz,*/);
+                }
+            } while(subOp != 5);
         break;
-        
-        default:
-            break;
         }
     } while (op != 3);
-    
-    codificadorHuffman("Duke.txt");
-    decodificadorHuffman("Duke.txt.hfc","Duke.txt.hft");
-    
+    //codificadorHuffman("Duke.txt");
+    //decodificadorHuffman("Duke.txt.hfc","Duke.txt.hft");
 }
 
 bool validar(int &entrada, int max, int min = 1) {//valida que el tipo de dato ingresado por el usuario coincida con el de la variable
@@ -100,8 +119,24 @@ int subMenuGrafos() {
     return op;
 }
 
+int miniMenuGrafos() {
+    int op;
+    cout << "Como desea leer el grafo?\n1. A una Matriz\n2. A una Lista: ";
+    if (!validar(op, 2)) {
+        return miniMenuGrafos();
+    }
+    return op;
+}
+
+string nombreArchivo() {
+    string name;
+    cout << "Ingrese el nombre del archivo: ";
+    cin >> name;
+    return name;
+}
+
 void operarArbol(Tree* arbol, int op) {
-    if (arbol == nullptr && op != 6 && op != 7) {
+    if (arbol == nullptr && op < 6) {
         cout << "Arbol no existe" << endl;
         return;
     }
@@ -129,6 +164,22 @@ void operarArbol(Tree* arbol, int op) {
         cin >> name;
         decodificadorHuffman(name + ".hfc", name + ".hft");
     break;
+    }
+}
+
+void operarGrafo(bool conLista, int subOp, GrafoL* Lista) /*,GrafoM* Matriz = nullptr)*/ {
+    if (conLista) {
+        if (subOp != 3) {
+            cout << "Usted esta trabajando con Grafos mediante Listas de ayancecia. No puede usar esta funcion!\n";
+            return;
+        }
+        Lista->kruskal();
+    } else {
+        if (subOp == 3) {
+             cout << "Usted esta trabajando con Grafos mediante matrices. No puede usar esta funcion!\n";
+            return;
+        }
+        //cosos de la matriz ?
     }
 }
 
