@@ -49,6 +49,12 @@ GrafoM::GrafoM(string nombre)
 
 //METODOS
 
+//Devuelve el numero de vertices
+int GrafoM::numVertices()
+{
+    return grafo.size();
+}
+
 //Añade un grafo directamente
 void GrafoM::setGrafo(vector<vector<int>> grafo)
 {
