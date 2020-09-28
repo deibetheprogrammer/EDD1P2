@@ -1,4 +1,5 @@
 #include "Tree.hpp"
+#include "GrafoL.hpp"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -19,6 +20,7 @@ int subMenuGrafos();
 void operarArbol(Tree*, int);
 
 int main() {
+
     Tree* arbolito = nullptr;
     int op, subOp;
     string name;
