@@ -107,42 +107,46 @@ vector<string> split(string line, char delimiter = ',') {
     return vect;
 }
 
-Tree Tree::leerDeArchivo(string nombre) {
+Tree* Tree::leerDeArchivo(string nombre) {
     ifstream archivo;
-    archivo.open(nombre + ".txt", ios::in);
-    vector<vector<string>> lineas;
-    string linea;
-    getline(archivo, linea);
-    int nLin = stoi(linea);
-    for(int i = 0; i < nLin; i++) {
-        if (getline(archivo, linea)) {
-            lineas.push_back(split(linea));
-        } else {
-            lineas.push_back(split(""));
-        }        
-    }
-    Tree Arbol(nLin);
-    for (int i = 0; i < lineas.size(); i++) {
-        if (lineas.at(i).size() == 2) {
-            Arbol.crea(to_string(i), i, stoi(lineas.at(i).at(0)), stoi(lineas.at(i).at(1)));
-        } else if(lineas.at(i).size() == 1) {
-            Arbol.crea(to_string(i), i, stoi(lineas.at(i).at(0)));
-        } else {
-            Arbol.crea(to_string(i), i);
+    archivo.open(nombre, ios::in);
+    if (archivo.is_open()) {
+        vector<vector<string>> lineas;
+        string linea;
+        getline(archivo, linea);
+        int nLin = stoi(linea);
+        for(int i = 0; i < nLin; i++) {
+            if (getline(archivo, linea)) {
+                lineas.push_back(split(linea));
+            } else {
+                lineas.push_back(split(""));
+            }        
         }
+        Tree* Arbol = new Tree(nLin);
+        for (int i = 0; i < lineas.size(); i++) {
+            if (lineas.at(i).size() == 2) {
+                Arbol->crea(to_string(i), i, stoi(lineas.at(i).at(0)), stoi(lineas.at(i).at(1)));
+            } else if(lineas.at(i).size() == 1) {
+                Arbol->crea(to_string(i), i, stoi(lineas.at(i).at(0)));
+            } else {
+                Arbol->crea(to_string(i), i);
+            }
+        }
+        //cout << Arbol->raiz()->getIzq()->getEtiqueta();
+        archivo.close();
+        cout << "Arbol creado!\n";
+        return Arbol;
+    } else {
+        cout << "No fue posible leer el archivo!! Arbol no creado!\n";
+        return nullptr;
     }
-    archivo.close();
-    return Arbol;
 }
 
 void Tree::DFS_ImprimirPostOrder(TreeNode* raiz) {
     if (raiz != NULL) {
         DFS_ImprimirPostOrder(raiz->getIzq());
         DFS_ImprimirPostOrder(raiz->getDer());
-        cout << raiz->toString() << "\n";
-    }
-    else {
-        cout << "No existe el arbol" << endl;
+        cout << raiz->toString() << " - ";
     }
 }
 
