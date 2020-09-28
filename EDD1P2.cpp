@@ -16,8 +16,8 @@ void decodificadorHuffman(string mensaje,string arbol);
 
 int main() {
 
-    GrafoM* grafo = new GrafoM("Prim.txt");
-    grafo->prim();
+    GrafoM* grafo = new GrafoM("Floyd.txt");
+    grafo->floyd();
     
 }
 

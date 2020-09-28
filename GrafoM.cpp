@@ -49,6 +49,12 @@ GrafoM::GrafoM(string nombre)
 
 //METODOS
 
+//Añade un grafo directamente
+void GrafoM::setGrafo(vector<vector<int>> grafo)
+{
+	this->grafo = grafo;
+}
+
 //Separa un string por un delimitador arbitrario
 vector<string> GrafoM::split(string linea, char delim)
 {
@@ -149,6 +155,71 @@ GrafoM* GrafoM::prim()
 
     return AACM;
 }
+
+vector<vector<int>> GrafoM::floyd(){
+
+	//Copia del grafo
+	vector<vector<int>> path(grafo.size(),vector<int>(grafo.size(),INT_MAX));
+
+	for (int i = 0; i < grafo.size(); i++)
+	{
+		for (int j = 0; j < grafo.size(); j++)
+		{
+			if (grafo[i][j] != 0)
+			{
+				path[i][j] = grafo[i][j];
+			}
+
+		}
+		
+	}
+
+	for (int i = 0; i < path.size(); i++)
+	{
+		path[i][i] = 0;
+	}
+	
+
+	for(int i = 0; i < this->grafo.size(); i++){
+ 		for(int k = 0; k < this->grafo.size(); k++) {
+    		for(int i = 0; i < this->grafo.size(); i++) {
+     			for(int j = 0; j < this->grafo.size(); j++){
+					if (path[i][k] == INT_MAX || path[k][j] == INT_MAX || i == j)
+					{ 
+						continue;
+					}
+     				int dt = path[i][k] + path[k][j];
+      				if(path[i][j] > dt) {
+						path[i][j] = dt;
+					}
+    			}
+			}
+		}
+	}
+
+	//Imprimir el resultado
+
+	cout << endl << "Path: " << endl;
+
+	for (int i = 0; i < path.size(); i++)
+	{
+		for (int j = 0; j < path.size(); j++)
+		{
+			if (path[i][j] != INT_MAX && i != j)
+			{
+				cout << i
+             	 << " ---> " << j
+             	 << " : " << path[i][j]
+             	 << endl;
+			}
+
+		}
+
+	}
+	
+ 	return path;
+}
+
 
 //DESTRUCTOR
 

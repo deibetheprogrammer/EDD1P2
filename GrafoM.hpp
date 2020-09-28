@@ -21,6 +21,9 @@ public:
 
     //METODOS
 
+    //Añade un grafo directamente
+    void setGrafo(vector<vector<int>> grafo);
+
     //Separa un string por un delimitador arbitrario
     vector<string> split(string linea, char delim);
 
@@ -29,6 +32,9 @@ public:
 
     //Algoritmo de prim
     GrafoM* prim();
+
+    //Algoritmo de floyd
+    vector<vector<int>> floyd();
 
 
     //DESTRUCTOR
