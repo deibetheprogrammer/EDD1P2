@@ -109,7 +109,7 @@ GrafoM* GrafoM::prim()
         int pu = INT_MAX;
         for (int j = 0; j < grafo.size(); j++)
         {
-            if (visit[j] = false && aux[j] < pu)
+            if (visit[j] == false && aux[j] < pu)
             {
                 u = j;
                 pu = aux[j];
@@ -134,14 +134,19 @@ GrafoM* GrafoM::prim()
          << "AACM: "
          << endl;
 
+    GrafoM* AACM = new GrafoM(grafo.size());
+
     for (AristaL arista : cs)
     {
         cout << arista.getOrigen() 
              << " ---> " << arista.getDestino() 
              << " : " << arista.getPeso() 
              << endl;
+        
+        AACM->crearArista(arista.getOrigen(),arista.getDestino(),arista.getPeso());
     }
-    
+
+    return AACM;
 }
 
 //DESTRUCTOR

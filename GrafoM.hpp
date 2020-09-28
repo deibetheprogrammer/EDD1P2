@@ -2,8 +2,9 @@
 #define GRAFOM_H
 
 #include <vector>
+#include <string>
 
-using std::vector;
+using namespace std;
 
 class GrafoM
 {
@@ -21,7 +22,7 @@ public:
     //METODOS
 
     //Separa un string por un delimitador arbitrario
-    vector<string> GrafoM::split(string linea, char delim);
+    vector<string> split(string linea, char delim);
 
     //Crea una arista
     void crearArista(int origen, int destino, int peso);
