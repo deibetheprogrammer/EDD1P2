@@ -5,6 +5,7 @@
 #include <sstream>
 #include <vector>
 #include <map>
+#include <climits>
 
 using namespace std;
 
@@ -13,13 +14,122 @@ void codificadorHuffman(string nombre);
 
 //Decodificador Huffman
 void decodificadorHuffman(string mensaje,string arbol);
+int menu();
+int subMenuArboles();
+int subMenuGrafos();
+void operarArbol(Tree*, int);
 
 int main() {
 
-   codificadorHuffman("Duke.txt");
-   cout << endl << "--------------" << endl;
-   decodificadorHuffman("Duke.txt.hfc","Duke.txt.hft");
+    Tree* arbolito = nullptr;
+    int op, subOp;
+    string name;
+    do {
+        op = menu();
+        switch (op) {
+        case 1://Arboles
+            do {
+                subOp = subMenuArboles();
+                switch (subOp) {
+                case 1:
+                    if (arbolito != nullptr) {
+                        delete arbolito;
+                        arbolito = nullptr;
+                    }
+                    cout << "Ingrese el nombre del archivo: ";
+                    cin >> name;
+                    arbolito = Tree::leerDeArchivo(name);
+                break;
+                default:
+                    operarArbol(arbolito, subOp);
+                break;
+                }
+            } while (subOp != 8);
+        break;
+        case 2://Grafos
+            subOp = subMenuGrafos();
+        break;
+        
+        default:
+            break;
+        }
+    } while (op != 3);
     
+    codificadorHuffman("Duke.txt");
+    decodificadorHuffman("Duke.txt.hfc","Duke.txt.hft");
+    
+}
+
+bool validar(int &entrada, int max, int min = 1) {//valida que el tipo de dato ingresado por el usuario coincida con el de la variable
+    if(!(cin >> entrada) || entrada < min || entrada > max) {//y este dentro del rango deseado
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cout << "Ingreso no valido!" << endl;
+        return false;
+    }
+    return true;
+}
+
+int menu() {
+    int op;
+    cout << "Menu Principal\n1. Algoritmos sobre Arboles\n2. Algoritmos sobre Grafos\n3. Salir: ";
+    if(!validar(op, 3)) {
+        return menu();
+    }
+    return op;
+}
+
+int subMenuArboles() {
+    int op;
+    cout << "Algoritmos sobre Árboles\n1. Leer Arbol de un archivo\n2. Imprimir recorrido preorder\n";
+    cout << "3. Imprimir recorrido in order\n4. Imprimir recorrido postorder\n5. Imprimir recorrido en Anchura\n";
+    cout << "6. Codificador de Huffman\n7. Decodificador de Huffman\n8. Regresar al Menu Principal: ";
+    if(!validar(op, 8)) {
+        return subMenuArboles();
+    }
+    return op;
+}
+
+int subMenuGrafos() {
+    int op;
+    cout << "Algoritmos sobre Grafos\n1. Leer grafo de un archivo\n2. Prim\n3. Kruskal\n4. Floyd\n";
+    cout << "5. Regresar al Menu Principal: ";
+    if(!validar(op, 7)) {
+        return subMenuGrafos();
+    }
+    return op;
+}
+
+void operarArbol(Tree* arbol, int op) {
+    if (arbol == nullptr && op != 6 && op != 7) {
+        cout << "Arbol no existe" << endl;
+        return;
+    }
+    string name;
+    switch (op) {
+        case 2://preorder
+        arbol->DFS_ImprimirPreOrder(arbol->raiz());
+    break;
+    case 3://in order
+            arbol->DFS_ImprimirInOrder(arbol->raiz());
+    break;
+    case 4://postorder
+            arbol->DFS_ImprimirPostOrder(arbol->raiz());
+    break;
+    case 5://BFS
+            arbol->BFS_Imprimir();
+    break;
+    case 6://codificador Huffman
+        cout << "Ingrese el nombre del archivo: ";
+        cin >> name;
+        codificadorHuffman(name);
+    break;
+    case 7://decodificador Huffman
+    cout << "Ingrese el nombre del archivo: ";
+        cin >> name;
+        decodificadorHuffman(name + ".hfc", name + ".hft");
+    break;
+    }
 }
 
 void codificadorHuffman(string nombre)
