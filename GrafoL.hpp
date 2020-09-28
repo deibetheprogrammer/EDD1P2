@@ -16,6 +16,9 @@ class GrafoL
 
     //METODOS
 
+    //Devuelve el numero de vertices
+    int numVertices();
+
     //Separa un string por un delimitador arbitrario
     vector<string> split(string linea, char delim);
 

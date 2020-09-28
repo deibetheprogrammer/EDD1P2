@@ -62,6 +62,19 @@ int main() {
                             grafoListas = nullptr;
                         }
                         grafoListas = new GrafoL(nombreArchivo());
+
+                        cout << endl << "Grafo leido: " << endl;
+
+                        grafoListas->imprimir();
+
+                        if (grafoListas->numVertices() == 0)
+                        {
+                            cout << endl << "Error al leer grafo" << endl;
+                            delete grafoListas;
+                            grafoListas = nullptr;
+                            listas = false;
+                        }
+                        
                     } else {//Grafo con Matriz
                         /*if(grafoMatriz != nullptr) {
                             delete grafoMatriz;
@@ -173,13 +186,13 @@ void operarArbol(Tree* arbol, int op) {
 void operarGrafo(bool conLista, int subOp, GrafoL* Lista) /*,GrafoM* Matriz = nullptr)*/ {
     if (conLista) {
         if (subOp != 3) {
-            cout << "Usted esta trabajando con Grafos mediante Listas de ayancecia. No puede usar esta funcion!\n";
+            cout << "Usted no tiene un grafo cargado con matrices de adyacencia. No puede usar esta funcion!\n";
             return;
         }
         Lista->kruskal();
     } else {
         if (subOp == 3) {
-             cout << "Usted esta trabajando con Grafos mediante matrices. No puede usar esta funcion!\n";
+             cout << "Usted no tiene cargado un grafo con listas de adyacencia. No puede usar esta funcion!\n";
             return;
         }
         //cosos de la matriz ?

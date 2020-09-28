@@ -41,10 +41,21 @@ GrafoL::GrafoL(string nombre)
         }
         
     }
+    else
+    {
+        cout << endl << "Archivo no existe" << endl;
+    }
+    
     
 }
 
 //METODOS
+
+//Devuelve el numero de vertices
+int GrafoL::numVertices()
+{
+    return grafo.size();
+}
 
 //Separa un string por un delimitador arbitrario
 vector<string> GrafoL::split(string linea, char delim)
@@ -121,14 +132,8 @@ GrafoL* GrafoL::kruskal()
         {
             int x = conjuntos[destino];
 
-            for (int i = 0; i < conjuntos.size(); i++)
-            {
-                if (conjuntos[i] == x)
-                {
-                    conjuntos[i] = conjuntos[origen];
-                }
-                
-            }
+            replace(conjuntos.begin(),conjuntos.end(),x,conjuntos[origen]);
+
             AACM->crearArista(origen,destino,arista.getPeso());
             na++;
             if (na == grafo.size() - 1)
@@ -154,7 +159,7 @@ void GrafoL::imprimir()
     {
         for (int j = 0; j < grafo[i].size(); j++)
         {
-            cout << i << " --> " << grafo[i][j].first << " : " << grafo[i][j].second << endl;
+            cout << i << " <--> " << grafo[i][j].first << " : " << grafo[i][j].second << endl;
         }
         
     }
