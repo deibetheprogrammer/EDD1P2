@@ -11,9 +11,24 @@ class GrafoM
 public:
 
     //CONSTRUCTOR
-    GrafoM();
 
-    
+    //Construye un grafo con n numero de vertices
+    GrafoM(int nVertices);
+
+    //Contruye un GrafoM a partir de un archivo
+    GrafoM(string nombre);
+
+    //METODOS
+
+    //Separa un string por un delimitador arbitrario
+    vector<string> GrafoM::split(string linea, char delim);
+
+    //Crea una arista
+    void crearArista(int origen, int destino, int peso);
+
+    //Algoritmo de prim
+    GrafoM* prim();
+
 
     //DESTRUCTOR
     ~GrafoM();
@@ -22,7 +37,7 @@ public:
 protected:
 
     //Lista de listas de nodos
-    vector<vector<int>> listas;
+    vector<vector<int>> grafo;
 
 
 };
