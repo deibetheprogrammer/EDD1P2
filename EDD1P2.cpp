@@ -1,4 +1,5 @@
 #include "Tree.hpp"
+#include "GrafoM.hpp"
 #include "GrafoL.hpp"
 #include <iostream>
 #include <fstream>
