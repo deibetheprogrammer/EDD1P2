@@ -134,6 +134,7 @@ Tree* Tree::leerDeArchivo(string nombre) {
         }
         //cout << Arbol->raiz()->getIzq()->getEtiqueta();
         archivo.close();
+        cout << "Arbol creado!\n";
         return Arbol;
     } else {
         cout << "No fue posible leer el archivo!! Arbol no creado!\n";
@@ -145,10 +146,7 @@ void Tree::DFS_ImprimirPostOrder(TreeNode* raiz) {
     if (raiz != NULL) {
         DFS_ImprimirPostOrder(raiz->getIzq());
         DFS_ImprimirPostOrder(raiz->getDer());
-        cout << raiz->toString() << "\n";
-    }
-    else {
-        cout << "No existe el arbol" << endl;
+        cout << raiz->toString() << " - ";
     }
 }
 
