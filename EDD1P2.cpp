@@ -70,7 +70,7 @@ int main() {
                             grafoListas = nullptr;
                             listas = false;
                         } else {
-                        cout << endl << "Grafo leido: " << endl;
+                        cout << endl << "Grafo leído: " << endl;
                         grafoListas->imprimir();
                         }
                     } else {//Grafo con Matriz
@@ -84,7 +84,7 @@ int main() {
                             delete grafoMatriz;
                             grafoMatriz = nullptr;
                         } else {
-                        cout << endl << "Grafo leido: " << endl;
+                        cout << endl << "Grafo leído. " << endl;
                         }
                     }
                 } else if(subOp != 5) {
@@ -110,7 +110,7 @@ bool validar(int &entrada, int max, int min = 1) {//valida que el tipo de dato i
 
 int menu() {
     int op;
-    cout << "\nMenu Principal\n1. Algoritmos sobre Arboles\n2. Algoritmos sobre Grafos\n3. Salir: ";
+    cout << "\nMenu Principal\n1. Algoritmos sobre Arboles\n2. Algoritmos sobre Grafos\n3. Salir\nIngrese la opción que desea: ";
     if(!validar(op, 3)) {
         return menu();
     }
@@ -122,7 +122,7 @@ int subMenuArboles() {
     cout << endl;
     cout << "\nAlgoritmos sobre Árboles\n1. Leer Arbol de un archivo\n2. Imprimir recorrido preorder\n";
     cout << "3. Imprimir recorrido in order\n4. Imprimir recorrido postorder\n5. Imprimir recorrido en Anchura\n";
-    cout << "6. Codificador de Huffman\n7. Decodificador de Huffman\n8. Regresar al Menu Principal\nIngrese la opcion que desea:  ";
+    cout << "6. Codificador de Huffman\n7. Decodificador de Huffman\n8. Regresar al Menú Principal\nIngrese la opción que desea: ";
     if(!validar(op, 8)) {
         return subMenuArboles();
     }
@@ -132,7 +132,7 @@ int subMenuArboles() {
 int subMenuGrafos() {
     int op;
     cout << "\nAlgoritmos sobre Grafos\n1. Leer grafo de un archivo\n2. Prim\n3. Kruskal\n4. Floyd\n";
-    cout << "5. Regresar al Menu Principal: ";
+    cout << "5. Regresar al Menú Principal\nIngrese la opción que desea: ";
     if(!validar(op, 7)) {
         return subMenuGrafos();
     }
@@ -141,7 +141,7 @@ int subMenuGrafos() {
 
 int miniMenuGrafos() {
     int op;
-    cout << "\nComo desea leer el grafo?\n1. A una Matriz\n2. A una Lista: ";
+    cout << "\n¿Como desea leer el grafo?\n1. A una Matriz\n2. A una Lista\nIngrese la opción que desea: ";
     if (!validar(op, 2)) {
         return miniMenuGrafos();
     }
@@ -191,17 +191,17 @@ void operarArbol(Tree* arbol, int op) {
 void operarGrafo(bool conLista, int subOp, GrafoL* Lista, GrafoM* Matriz) {
     if (conLista) {
         if (subOp != 3) {
-            cout << "Usted no tiene un grafo cargado con matrices de adyacencia. No puede usar esta funcion!\n";
+            cout << "Usted no tiene un grafo cargado con matrices de adyacencia. ¡No puede usar esta funcion!\n";
             return;
         }
         Lista->kruskal();
     } else {
         if (subOp == 3) {
-             cout << "Usted no tiene cargado un grafo con listas de adyacencia. No puede usar esta funcion!\n";
+             cout << "Usted no tiene cargado un grafo con listas de adyacencia. ¡No puede usar esta funcion!\n";
             return;
         }
         if (Matriz == nullptr) {
-            cout << "Usted no tiene un grafo cargado con matrices de adyacencia. No puede usar esta funcion!\n";
+            cout << "Usted no tiene un grafo cargado con matrices de adyacencia. ¡No puede usar esta funcion!\n";
             return;
         }
         switch (subOp) {
