@@ -21,6 +21,9 @@ public:
 
     //METODOS
 
+    //Devuelve el numero de vertices
+    int numVertices();
+
     //Añade un grafo directamente
     void setGrafo(vector<vector<int>> grafo);
 
